@@ -1596,5 +1596,86 @@ document.addEventListener('DOMContentLoaded',()=>{
   },{passive:true});
 })();
 </script>
+
+<style>
+@media(max-width:768px){
+  /* ══ FOOTER MOBILE CENTERING — final override ══ */
+  footer { padding: 40px 20px 28px !important; }
+  
+  /* Make fg-grid a flex column */
+  footer .fg-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: unset !important;
+    gap: 0 !important;
+    padding-bottom: 0 !important;
+    border-bottom: none !important;
+  }
+  
+  /* Hide tagline/sub, show logo section last */
+  footer .fg-grid > div:first-child {
+    order: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding-top: 28px !important;
+  }
+  footer .ft-tag, footer .ft-sub { display: none !important; }
+  footer .ft-logo {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  footer .ft-logo img { margin: 0 auto !important; }
+
+  /* ft-right (links) goes first, 2 columns centered */
+  footer .ft-right {
+    order: 1 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0 !important;
+    justify-content: space-around !important;
+    padding-bottom: 28px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    width: 100% !important;
+  }
+  
+  /* Each links column: centered content */
+  footer .ft-links {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  footer .ft-links h4 {
+    text-align: center !important;
+    width: 100% !important;
+    margin-bottom: 14px !important;
+  }
+  footer .ft-links a {
+    text-align: center !important;
+    width: auto !important;
+    display: block !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Bottom bar centered */
+  footer .ft-bar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding-right: 0 !important;
+    margin-top: 20px !important;
+    gap: 6px !important;
+  }
+  footer .ft-copy, footer .ft-cred {
+    text-align: center !important;
+    width: 100% !important;
+  }
+}
+</style>
 </body>
 </html>
