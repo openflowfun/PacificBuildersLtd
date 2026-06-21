@@ -392,17 +392,42 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .kb-wrap{position:absolute;inset:0;left:0;width:100%;height:100%}
   .kb-slide{display:none}
   .mob-vid{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .h-left{position:absolute;inset:0;width:100%;min-height:unset;padding:90px 24px 36px;background:rgba(11,41,79,.65);clip-path:none;justify-content:space-between;z-index:3}
+  .h-left{position:absolute;inset:0;width:100%;min-height:unset;padding:90px 24px 36px;background:rgba(5,15,35,.72);clip-path:none;justify-content:space-between;z-index:3}
   .h-left::after{display:none}
   .h-bar{display:none}
-  .h-cnt{padding:0}
-  .h-title{font-size:clamp(1rem,5.5vw,1.4rem);line-height:1.25;white-space:nowrap}
+  .h-cnt{padding:16px 12px;background:rgba(3,11,24,.45);border-radius:6px;backdrop-filter:blur(4px)}
+  .h-title{font-size:clamp(1rem,5.5vw,1.4rem);line-height:1.25;white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.9)}
   .h-phrase-wrap{height:clamp(1.6rem,8vw,2.8rem)}
   .h-phrase{font-size:clamp(1.6rem,8vw,2.8rem)}
   .h-btns{width:100%}
   .h-btns .btn-y{width:100%;text-align:center;display:block;margin-bottom:0}
   .h-btns .btn-g{display:none}
   .mob-call{display:none!important}
+  /* NZBN strip mobile */
+  .nzbn-strip{padding:10px 16px;gap:8px;flex-wrap:nowrap;justify-content:center}
+  .nzbn-strip .lbl{font-size:.45rem;letter-spacing:.12em}
+  .nzbn-strip .val{font-size:.62rem}
+  .nzbn-loc{display:none!important}
+  .nzbn-strip span[style*="flex:1"]{display:none}
+  /* stat-banner mobile */
+  .stat-cell{padding:16px 8px}
+  .stat-n{font-size:1.6rem}
+  .stat-l{font-size:.5rem;letter-spacing:.1em}
+  /* trust grid 2 col */
+  .trust-grid{grid-template-columns:1fr 1fr!important;gap:8px}
+  .tc{font-size:.62rem;gap:6px}
+  /* pillar mobile */
+  .p-title{font-size:.72rem}
+  .p-desc{font-size:.72rem;line-height:1.6}
+  /* footer mobile */
+  .ft-right{flex-direction:column;gap:24px}
+  .ft-tag{font-size:.85rem}
+  .ft-sub{font-size:.72rem}
+  /* section headings */
+  section .in{padding:0 20px}
+  /* proc step mobile */
+  .proc-h{font-size:.65rem;line-height:1.3}
+  .proc-dot{width:32px;height:32px;font-size:.6rem;margin-bottom:8px}
   .about-img{display:none}
   .mob-about-vid{display:block;width:100%;height:220px;object-fit:cover;border-radius:4px;margin-top:20px}
   .svc-card.flipped .svc-inner-flip{transform:rotateY(180deg)}
@@ -430,15 +455,18 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .proc-h{cursor:pointer;font-size:.7rem}
   .proc-dot{width:36px;height:36px;font-size:.65rem;margin-bottom:10px}
   .svc-grid{grid-template-columns:repeat(3,1fr);gap:10px}
-  .svc-card{height:160px}
-  .svc-front,.svc-back{padding:14px 10px}
-  .svc-name{font-size:.55rem;letter-spacing:.02em}
-  .svc-icon{font-size:1.1rem}
-  .svc-desc{font-size:.65rem;line-height:1.5}
-  .svc-feat{font-size:.58rem}
+  .svc-card{height:auto;min-height:100px}
+  .svc-inner-flip{min-height:100px;height:100px}
+  .svc-front,.svc-back{position:absolute;inset:0;padding:10px 8px}
+  .svc-name{font-size:.5rem;letter-spacing:.01em;white-space:normal;text-align:center;line-height:1.2}
+  .svc-icon{display:none}
+  .svc-desc{font-size:.58rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .svc-feats{display:none}
+  .svc-bar{display:none}
 }
 @media(max-width:480px){
-  .trust-grid{grid-template-columns:1fr}
+  .trust-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .tc{font-size:.62rem}
 }
 </style>
 </head>
@@ -556,9 +584,9 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
     <span style="flex:1"></span>
     <span class="lbl">Est.</span>
     <span class="val">2001</span>
-    <span style="flex:1"></span>
-    <span class="lbl">Location</span>
-    <span class="val">Canterbury, New Zealand</span>
+    <span class="nzbn-loc" style="flex:1"></span>
+    <span class="nzbn-loc lbl">Location</span>
+    <span class="nzbn-loc val">Canterbury, New Zealand</span>
   </div>
 </section>
 
