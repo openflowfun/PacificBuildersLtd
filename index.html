@@ -571,11 +571,11 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
     border-bottom:1px solid var(--b);
     margin-bottom:0;
   }
-  .ft-links{flex:1;padding:0 8px}
+  .ft-links{flex:1;padding:0 8px;text-align:center!important}
   .ft-links:first-child{padding-left:0}
   .ft-links:last-child{padding-right:0}
-  .ft-links h4{font-size:.5rem;letter-spacing:.14em;margin-bottom:12px}
-  .ft-links a{font-size:.7rem;margin-bottom:9px}
+  .ft-links h4{font-size:.5rem;letter-spacing:.14em;margin-bottom:12px;text-align:center!important}
+  .ft-links a{font-size:.7rem;margin-bottom:9px;display:block!important;text-align:center!important}
   /* first div (logo+tagline+sub) moves to BELOW the links via order:2 */
   .fg-grid > div:first-child{
     order:2;
@@ -589,8 +589,12 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .ft-logo{
     display:flex!important;
     justify-content:center!important;
-    margin:0 0 0;
+    align-items:center!important;
+    margin:0 auto!important;
+    width:100%!important;
   }
+  /* override inline style on ft-logo div */
+  .fg-grid > div:first-child .ft-logo{justify-content:center!important}
   .ft-logo img{height:90px!important}
   /* ft-bar centred */
   .ft-bar{
