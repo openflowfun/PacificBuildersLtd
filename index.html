@@ -14,6 +14,13 @@
 <meta name="twitter:image" content="Logo.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Pacific Builders Canterbury Ltd","telephone":"+6421335435","address":{"@type":"PostalAddress","addressLocality":"Christchurch","addressRegion":"Canterbury","addressCountry":"NZ"},"knowsAbout":["New Builds","Renovations","Architectural Builds","Design and Build"]}</script>
+<!-- Preload critical assets for instant load -->
+<link rel="preload" href="Logo.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="home1.JPG" as="image" fetchpriority="high">
+<link rel="preload" href="NZ_Logo.png" as="image">
+<link rel="preload" href="mainhouse.MP4" as="video" type="video/mp4">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/nasalization" rel="stylesheet">
 <style>
@@ -107,7 +114,7 @@ body.hov #cur-r{opacity:.2}
 .kb-wrap{position:absolute;left:38%;right:0;top:0;bottom:0;z-index:1;overflow:hidden}
 .mob-vid{display:none}
 .kb-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:kbCycle 18s ease-in-out infinite}
-.kb-slide:nth-child(1){background-image:url('home1.JPG');animation-delay:0s}
+.kb-slide:nth-child(1){background-image:url('home1.JPG');animation-delay:0s;opacity:1}
 .kb-slide:nth-child(2){background-image:url('home2.JPG');animation-delay:6s}
 .kb-slide:nth-child(3){background-image:url('home3.JPG');animation-delay:12s}
 @keyframes kbCycle{
@@ -425,12 +432,13 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .trust-grid{grid-template-columns:1fr 1fr!important;gap:8px}
   .tc{font-size:.52rem;gap:5px;letter-spacing:.02em;font-weight:600}
   /* pillar mobile */
-  .pillars{overflow:hidden}
-  .pillar{overflow:hidden;padding:18px 12px}
-  .p-ic{font-size:1rem;flex:0 0 28px;width:28px;height:28px;display:flex;align-items:center;justify-content:center}
-  .p-title{font-size:.58rem;letter-spacing:.06em;line-height:1.25}
-  .p-arr{font-size:.8rem}
-  .p-desc{font-size:.65rem;line-height:1.5}
+  .pillars{overflow:hidden;width:100%}
+  .pillar{overflow:hidden;padding:14px 10px;min-width:0}
+  .p-ic{display:none}
+  .p-title{font-size:.5rem;letter-spacing:.04em;line-height:1.2;word-break:normal;overflow-wrap:normal;hyphens:none}
+  .p-arr{font-size:.7rem;flex-shrink:0}
+  .p-top{gap:6px}
+  .p-desc{font-size:.62rem;line-height:1.5}
   /* footer mobile */
   .ft-right{flex-direction:column;gap:24px}
   .ft-tag{font-size:.85rem}
@@ -446,8 +454,9 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   *{white-space:normal!important;overflow-wrap:anywhere}
   /* exceptions that need nowrap restored */
   .nav-logo,.btn-y,.btn-g,.h-tag-pill,.of-txt{white-space:nowrap!important}
-  .svc-card.flipped .svc-inner-flip{transform:rotateY(180deg)}
-  .svc-card:hover .svc-inner-flip{transform:none}
+  .svc-card .svc-inner-flip{transform:none!important}
+  .svc-back{display:none}
+  .svc-front{justify-content:center;align-items:center;cursor:pointer}
   .about-grid{grid-template-columns:1fr}
   .about-img{height:280px}
   .about-img::after{display:none}
@@ -502,7 +511,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 <!-- ══════ NAVBAR ══════ -->
 <nav id="nav">
   <div class="nav-in">
-    <a href="#" class="nav-logo"><img src="Logo.jpg" alt="Pacific Builders Canterbury Ltd"></a>
+    <a href="#" class="nav-logo"><img src="Logo.jpg" alt="Pacific Builders Canterbury Ltd" loading="eager" fetchpriority="high"></a>
     <div class="nav-links">
       <a href="#about">About Us</a>
       <a href="#portfolio">Portfolio</a>
@@ -541,7 +550,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   <!-- LEFT: navy panel -->
   <div class="h-left">
     <!-- TOP: location tag -->
-    <div class="h-tag"><img class="h-tag-img" src="NZ_Logo.png" alt="New Zealand"><span class="h-tag-pill">Canterbury, New Zealand</span></div>
+    <div class="h-tag"><img class="h-tag-img" src="NZ_Logo.png" alt="New Zealand" loading="eager"><span class="h-tag-pill">Canterbury, New Zealand</span></div>
 
     <!-- MIDDLE: main copy -->
     <div class="h-cnt">
@@ -567,7 +576,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 
   <!-- RIGHT: Ken Burns photos (desktop) + video (mobile) -->
   <div class="kb-wrap">
-    <video class="mob-vid" src="mainhouse.MP4" autoplay muted loop playsinline></video>
+    <video class="mob-vid" src="mainhouse.MP4" autoplay muted loop playsinline preload="auto" poster="home1.JPG"></video>
     <div class="kb-slide"></div>
     <div class="kb-slide"></div>
     <div class="kb-slide"></div>
@@ -579,7 +588,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 <section id="about">
   <div class="about-grid">
     <div class="about-img rl">
-      <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="about-vid">
+      <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="about-vid" poster="home1.JPG">
         <source src="house.mp4" type="video/mp4">
       </video>
     </div>
@@ -1075,7 +1084,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 <!-- Mobile Services Bottom Sheet -->
 <div id="svc-backdrop" onclick="closeSheet()" style="display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.5)"></div>
 <div id="svc-sheet" style="position:fixed;bottom:-100%;left:0;right:0;z-index:701;background:#0b294f;border-top:2px solid var(--y);border-radius:18px 18px 0 0;padding:28px 24px 40px;transition:bottom .35s cubic-bezier(.22,1,.36,1);max-height:70vh;overflow-y:auto">
-  <div style="width:40px;height:3px;background:rgba(255,255,255,.25);border-radius:2px;margin:0 auto 20px"></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div style="width:40px;height:3px;background:rgba(255,255,255,.25);border-radius:2px"></div><button onclick="closeSheet()" style="background:none;border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:50%;width:28px;height:28px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1">✕</button></div>
   <div id="sheet-name" style="font-family:'Nasalization','Inter',sans-serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--yl);margin-bottom:14px"></div>
   <div id="sheet-desc" style="color:rgba(237,232,220,.8);font-size:.82rem;line-height:1.7;margin-bottom:16px"></div>
   <div id="sheet-feats" style="display:flex;flex-direction:column;gap:8px"></div>
@@ -1205,11 +1214,32 @@ window.addEventListener('scroll',()=>btt.classList.toggle('vis',window.scrollY>3
 const av=document.getElementById('about-vid');
 if(av){new IntersectionObserver(entries=>{if(entries[0].isIntersecting)av.play().catch(()=>{});},{threshold:.3}).observe(av);}
 
-/* ── Mobile tap-to-flip services + tap-to-reveal process ── */
+/* ── Services bottom sheet ── */
+function openSheet(name,desc,feats){
+  document.getElementById('sheet-name').textContent=name;
+  document.getElementById('sheet-desc').textContent=desc;
+  const fl=document.getElementById('sheet-feats');
+  fl.innerHTML=feats.map(f=>`<div style="display:flex;align-items:center;gap:8px;font-size:.75rem;color:rgba(237,232,220,.7)"><span style="width:5px;height:5px;border-radius:50%;background:var(--y);flex-shrink:0;display:inline-block"></span>${f}</div>`).join('');
+  document.getElementById('svc-backdrop').style.display='block';
+  document.getElementById('svc-sheet').style.bottom='0';
+  document.body.style.overflow='hidden';
+}
+function closeSheet(){
+  document.getElementById('svc-backdrop').style.display='none';
+  document.getElementById('svc-sheet').style.bottom='-100%';
+  document.body.style.overflow='';
+}
+
+/* ── Mobile: tap cards to open sheet, tap process steps to reveal ── */
 document.addEventListener('DOMContentLoaded',()=>{
   if('ontouchstart' in window || navigator.maxTouchPoints>0){
     document.querySelectorAll('.svc-card').forEach(c=>{
-      c.addEventListener('click',()=>{ c.classList.toggle('flipped'); });
+      c.addEventListener('click',()=>{
+        const name=c.querySelector('.svc-name')?.textContent||'';
+        const desc=c.querySelector('.svc-desc')?.textContent||'';
+        const feats=[...c.querySelectorAll('.svc-feat')].map(f=>f.textContent);
+        openSheet(name,desc,feats);
+      });
     });
     document.querySelectorAll('.proc-step').forEach(s=>{
       s.addEventListener('click',()=>{ s.classList.toggle('open'); });
