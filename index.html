@@ -385,16 +385,20 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   #nav.sc .nav-logo img{height:44px}
   .nav-links,.nav-cta-d{display:none}
   .ham{display:flex}
-  /* hero split → stack on mobile */
-  #hero{flex-direction:column}
-  .h-left{width:100%;min-height:60dvh;padding:100px 28px 40px}
-  .kb-wrap{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;height:45dvh}
+  /* hero → full-screen overlay on mobile */
+  #hero{flex-direction:row;height:100dvh;position:relative}
+  .kb-wrap{position:absolute;inset:0;left:0;width:100%;height:100%}
+  .h-left{position:absolute;inset:0;width:100%;min-height:unset;padding:90px 28px 36px;background:rgba(11,41,79,.72);clip-path:none;justify-content:space-between;z-index:3}
   .h-left::after{display:none}
+  .h-bar{display:none}
   .h-cnt{padding:0}
-  .h-title{font-size:clamp(1.3rem,7vw,2.2rem);line-height:1.2}
+  .h-title{font-size:clamp(1.5rem,7.5vw,2.4rem);line-height:1.2}
   .h-phrase-wrap{height:clamp(2rem,10vw,3.5rem)}
   .h-phrase{font-size:clamp(2rem,10vw,3.5rem)}
-  .h-btns .btn-y,.h-btns .btn-g{width:90vw;max-width:300px;text-align:center;display:block}
+  .h-btns{width:100%}
+  .h-btns .btn-y{width:100%;text-align:center;display:block;margin-bottom:0}
+  .h-btns .btn-g{display:none}
+  .mob-call{display:none!important}
   .about-grid{grid-template-columns:1fr}
   .about-img{height:280px}
   .about-img::after{display:none}
