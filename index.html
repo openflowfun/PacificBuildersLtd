@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <title>Pacific Builders Canterbury Ltd – Premium Residential Builder, Canterbury NZ</title>
 <meta name="description" content="Pacific Builders Canterbury Ltd – 25+ years of premium residential construction in Canterbury, NZ. Licensed Building Practitioner. New builds, renovations, architectural homes. Free quotes."/>
-<link rel="icon" href="Logo/LogoSVG.svg"/>
+<link rel="icon" href="Logo.jpg"/>
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Pacific Builders Canterbury Ltd – Premium Residential Builder"/>
 <meta property="og:description" content="25+ years of trusted residential construction across Canterbury. Licensed. Local. Free quotes."/>
 <meta property="og:url" content="https://pacificbuild.co.nz"/>
+<meta property="og:image" content="Logo.jpg"/>
+<meta name="twitter:image" content="Logo.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Pacific Builders Canterbury Ltd","telephone":"+6421335435","address":{"@type":"PostalAddress","addressLocality":"Christchurch","addressRegion":"Canterbury","addressCountry":"NZ"},"knowsAbout":["New Builds","Renovations","Architectural Builds","Design and Build"]}</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -336,7 +338,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 .ft-contacts a{display:block;font-size:.78rem;color:var(--t3);text-decoration:none;margin-bottom:6px;transition:color .2s}
 .ft-contacts a:hover{color:var(--yl)}
 .ft-logo{display:flex;align-items:center;justify-content:center}
-.ft-logo img{height:110px;width:auto;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.05)}
+.ft-logo img{height:110px;width:auto;object-fit:contain}
 .ft-links h4{font-family:'Nasalization','Inter',sans-serif;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yl);margin-bottom:14px}
 .ft-links a{display:block;font-size:.76rem;color:var(--t3);text-decoration:none;margin-bottom:9px;transition:color .2s}
 .ft-links a:hover{color:var(--t)}
@@ -426,7 +428,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 <!-- ══════ NAVBAR ══════ -->
 <nav id="nav">
   <div class="nav-in">
-    <a href="#" class="nav-logo"><img src="Logo/LogoPNG.png" alt="Pacific Builders Canterbury Ltd"></a>
+    <a href="#" class="nav-logo"><img src="Logo.jpg" alt="Pacific Builders Canterbury Ltd"></a>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#portfolio">Portfolio</a>
@@ -859,7 +861,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
     </div>
     <div class="team-card rv d2">
       <div class="t-accent"></div>
-      <div class="t-photo" style="background:#fff;display:flex;align-items:center;justify-content:center;padding:32px"><img src="Logo/LogoPNG.png" alt="Jason Dalziel – Director, Pacific Builders Canterbury Ltd" style="width:100%;max-width:280px;height:auto;object-fit:contain"></div>
+      <div class="t-photo" style="background:#fff;display:flex;align-items:center;justify-content:center;padding:32px"><img src="Logo.jpg" alt="Jason Dalziel – Director, Pacific Builders Canterbury Ltd" style="width:100%;max-width:280px;height:auto;object-fit:contain"></div>
       <div class="t-info">
         <div class="t-name">Jason Dalziel</div>
         <div class="t-role">Director &amp; Licensed Building Practitioner</div>
@@ -937,7 +939,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 <footer>
   <div class="fg-grid">
     <div>
-      <div class="ft-logo" style="justify-content:flex-start;margin-bottom:18px"><img src="Logo/LogoSVG.svg" alt="Pacific Builders Canterbury Ltd"></div>
+      <div class="ft-logo" style="justify-content:flex-start;margin-bottom:18px"><img src="Logo.jpg" alt="Pacific Builders Canterbury Ltd"></div>
       <div class="ft-tag">Building Canterbury's <em>Future</em> – One Home at a Time</div>
       <p class="ft-sub">Premium residential construction across Canterbury, New Zealand. Quality craftsmanship, honest pricing, and results that last a lifetime.</p>
     </div>
@@ -999,6 +1001,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 
 <script>
 /* ── Progress ── */
+window.addEventListener('load',()=>{window.scrollTo(0,0);});
 window.addEventListener('scroll',()=>{const p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;document.getElementById('prog').style.width=p+'%';},{passive:true});
 
 /* ── Cursor ── */
