@@ -554,10 +554,50 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .p-arr{font-size:.7rem;flex-shrink:0}
   .p-top{gap:6px}
   .p-desc{font-size:.62rem;line-height:1.5}
-  /* footer mobile */
-  .ft-right{flex-direction:column;gap:24px}
-  .ft-tag{font-size:.85rem}
-  .ft-sub{font-size:.72rem}
+  /* ══ FOOTER MOBILE — Quick Links | Services → Logo → Copyright ══ */
+  footer{padding:40px 20px 28px}
+  /* fg-grid becomes flex column so we can reorder children */
+  .fg-grid{
+    display:flex;flex-direction:column;
+    grid-template-columns:unset;gap:0;
+    padding-bottom:0;border-bottom:none;
+  }
+  /* .ft-right (links) moves to TOP via order:1 */
+  .ft-right{
+    order:1;
+    flex-direction:row!important;gap:0!important;
+    justify-content:space-between;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--b);
+    margin-bottom:0;
+  }
+  .ft-links{flex:1;padding:0 8px}
+  .ft-links:first-child{padding-left:0}
+  .ft-links:last-child{padding-right:0}
+  .ft-links h4{font-size:.5rem;letter-spacing:.14em;margin-bottom:12px}
+  .ft-links a{font-size:.7rem;margin-bottom:9px}
+  /* first div (logo+tagline+sub) moves to BELOW the links via order:2 */
+  .fg-grid > div:first-child{
+    order:2;
+    display:flex!important;
+    flex-direction:column;align-items:center;
+    padding-top:28px;padding-bottom:0;
+  }
+  /* hide tagline + sub on mobile — logo only */
+  .ft-tag,.ft-sub{display:none}
+  /* logo centred */
+  .ft-logo{
+    display:flex!important;
+    justify-content:center!important;
+    margin:0 0 0;
+  }
+  .ft-logo img{height:90px!important}
+  /* ft-bar centred */
+  .ft-bar{
+    flex-direction:column!important;align-items:center!important;
+    text-align:center;margin-top:20px;padding-right:0!important;gap:6px!important;
+  }
+  .ft-copy,.ft-cred{text-align:center}
   /* section headings */
   section .in{padding:0 20px}
   .about-img{display:none}
@@ -669,10 +709,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   #contact{grid-template-columns:1fr}
   .cl{padding:60px 24px}
   .cr{padding:60px 24px}
-  .fg-grid{grid-template-columns:1fr;gap:28px}
-  .ft-logo{display:flex;justify-content:flex-start}
-  .ft-logo img{height:66px}
-  .ft-bar{flex-direction:column;align-items:flex-start}
+
   .stat-banner{grid-template-columns:repeat(3,1fr);gap:1px}
   .pillars{grid-template-columns:repeat(2,1fr)}
   /* Our Work text fix */
