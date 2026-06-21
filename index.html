@@ -27,6 +27,8 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--dk);color:var(--t);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none}
+@media(max-width:768px){*{max-width:100%;box-sizing:border-box}}
+.sec-sub{white-space:nowrap}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--dk)}
 ::-webkit-scrollbar-thumb{background:var(--y);border-radius:2px}
@@ -410,6 +412,9 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .nzbn-loc{display:none!important}
   .nzbn-strip span[style*="flex:1"]{display:none}
   /* stat-banner mobile */
+  /* section headings one line */
+  h2{font-size:clamp(1.2rem,6vw,1.8rem)!important;letter-spacing:.02em!important}
+  .in h2,.rv h2{white-space:normal!important}
   .stat-cell{padding:16px 8px}
   .stat-n{font-size:1.6rem}
   .stat-l{font-size:.5rem;letter-spacing:.1em}
@@ -417,8 +422,12 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .trust-grid{grid-template-columns:1fr 1fr!important;gap:8px}
   .tc{font-size:.62rem;gap:6px}
   /* pillar mobile */
-  .p-title{font-size:.72rem}
-  .p-desc{font-size:.72rem;line-height:1.6}
+  .pillars{overflow:hidden}
+  .pillar{overflow:hidden;padding:18px 12px}
+  .p-ic{font-size:1rem;flex:0 0 28px;width:28px;height:28px;display:flex;align-items:center;justify-content:center}
+  .p-title{font-size:.58rem;letter-spacing:.06em;line-height:1.25}
+  .p-arr{font-size:.8rem}
+  .p-desc{font-size:.65rem;line-height:1.5}
   /* footer mobile */
   .ft-right{flex-direction:column;gap:24px}
   .ft-tag{font-size:.85rem}
@@ -430,6 +439,10 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .proc-dot{width:32px;height:32px;font-size:.6rem;margin-bottom:8px}
   .about-img{display:none}
   .mob-about-vid{display:block;width:100%;height:220px;object-fit:cover;border-radius:4px;margin-top:20px}
+  /* fix text overflow everywhere on mobile */
+  *{white-space:normal!important;overflow-wrap:anywhere}
+  /* exceptions that need nowrap restored */
+  .nav-logo,.btn-y,.btn-g,.h-tag-pill,.of-txt{white-space:nowrap!important}
   .svc-card.flipped .svc-inner-flip{transform:rotateY(180deg)}
   .svc-card:hover .svc-inner-flip{transform:none}
   .about-grid{grid-template-columns:1fr}
@@ -448,6 +461,12 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .ft-bar{flex-direction:column;align-items:flex-start}
   .stat-banner{grid-template-columns:repeat(3,1fr);gap:1px}
   .pillars{grid-template-columns:repeat(2,1fr)}
+  /* Our Work text fix */
+  .sl-ov{padding:16px}
+  .sl-title{font-size:clamp(.75rem,4vw,1.1rem);white-space:normal;line-height:1.3;max-width:80vw}
+  .sl-cat{font-size:.48rem}
+  /* Our Work images bigger */
+  .sl-wrap{aspect-ratio:4/3}
   .proc-grid{grid-template-columns:repeat(4,1fr);overflow-x:auto;gap:0}
   .proc-step{min-width:0;padding:20px 12px;border-right:1px solid var(--b);border-bottom:none}
   .proc-d{display:none}
@@ -596,7 +615,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
     <div class="rv sh">
       <div class="ey">Our Work</div>
       <h2>Recent <em>Projects</em></h2>
-      <p style="white-space:nowrap">A selection of our recent residential builds and renovations across Canterbury.</p>
+      <p class="sec-sub">A selection of our recent residential builds and renovations across Canterbury.</p>
     </div>
     <div class="sl-wrap rv d2">
       <div class="sl act" data-cat="New Build" data-title="Halswell Architectural Home">
@@ -880,7 +899,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
     <div class="rv sh">
       <div class="ey">How It Works</div>
       <h2>Our <em>4-Step Process</em></h2>
-      <p style="white-space:nowrap">A clear, structured approach that keeps you informed and in control from day one.</p>
+      <p class="sec-sub">A clear, structured approach that keeps you informed and in control from day one.</p>
     </div>
     <div class="proc-grid">
       <div class="proc-step rv d1">
@@ -1177,6 +1196,18 @@ window.addEventListener('scroll',()=>btt.classList.toggle('vis',window.scrollY>3
 /* ── About video ── */
 const av=document.getElementById('about-vid');
 if(av){new IntersectionObserver(entries=>{if(entries[0].isIntersecting)av.play().catch(()=>{});},{threshold:.3}).observe(av);}
+
+/* ── Mobile tap-to-flip services + tap-to-reveal process ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  if('ontouchstart' in window || navigator.maxTouchPoints>0){
+    document.querySelectorAll('.svc-card').forEach(c=>{
+      c.addEventListener('click',()=>{ c.classList.toggle('flipped'); });
+    });
+    document.querySelectorAll('.proc-step').forEach(s=>{
+      s.addEventListener('click',()=>{ s.classList.toggle('open'); });
+    });
+  }
+});
 </script>
 </body>
 </html>
