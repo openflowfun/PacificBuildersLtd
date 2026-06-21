@@ -460,9 +460,98 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .about-img::after{display:none}
   .about-txt{padding:40px 20px;text-align:center}
   .about-h2{text-align:center}
-  .team-card{grid-template-columns:1fr}
-  .t-photo{min-height:240px}
-  .t-info{padding:28px 24px}
+  /* ══ MEET THE DIRECTOR — mobile redesign ══ */
+  #team{padding:52px 0}
+  #team .in{padding:0 16px}
+  .team-card{
+    display:flex;flex-direction:column;
+    grid-template-columns:unset;
+    border:1px solid rgba(248,204,49,.18);
+    border-radius:8px;overflow:hidden;
+    background:linear-gradient(160deg,rgba(11,41,79,.7) 0%,rgba(3,11,24,.95) 100%);
+    margin-top:24px;position:relative;
+  }
+  /* gold shimmer top bar */
+  .t-accent{grid-column:unset;height:2px;
+    background:linear-gradient(90deg,transparent,var(--y) 40%,var(--yl) 60%,transparent);
+    animation:shimmer 3s ease-in-out infinite;
+  }
+  @keyframes shimmer{0%,100%{opacity:.7}50%{opacity:1}}
+  /* logo circle */
+  .t-photo{
+    min-height:unset!important;
+    padding:28px 20px 20px!important;
+    background:none!important;
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .t-photo img{
+    width:80px!important;max-width:80px!important;
+    height:80px!important;
+    border-radius:50%;
+    border:2px solid var(--y);
+    box-shadow:0 0 22px rgba(248,204,49,.4),0 0 6px rgba(248,204,49,.2);
+    object-fit:contain;
+    padding:10px;
+    background:#fff;
+    flex-shrink:0;
+    animation:dotGlow 3s ease-in-out infinite;
+  }
+  .t-info{padding:20px 18px 24px!important}
+  .t-name{font-size:1rem!important;margin-bottom:3px;text-align:center}
+  .t-role{font-size:.55rem!important;letter-spacing:.12em;margin-bottom:16px;text-align:center}
+  /* hide the 3 credential boxes */
+  .t-creds{display:none!important}
+  /* stats row — keep compact */
+  .t-stats{
+    grid-template-columns:repeat(3,1fr)!important;
+    background:transparent!important;
+    gap:8px!important;
+    margin-bottom:16px;
+    border:none;
+  }
+  .ts{
+    background:rgba(11,41,79,.55)!important;
+    border:1px solid rgba(248,204,49,.15);
+    border-radius:6px;
+    padding:10px 6px!important;
+    text-align:center;
+  }
+  .ts .n{font-size:1rem!important;color:var(--y)!important}
+  .ts .l{font-size:.46rem!important;letter-spacing:.1em}
+  /* bio — collapsed with read-more */
+  .t-bio{
+    font-size:.73rem!important;line-height:1.72!important;
+    max-height:3.6em;overflow:hidden;
+    position:relative;margin-bottom:6px!important;
+    transition:max-height .45s cubic-bezier(.22,1,.36,1);
+  }
+  .t-bio.bio-open{max-height:200px}
+  .t-bio:not(.bio-open)::after{
+    content:'';position:absolute;bottom:0;left:0;right:0;height:1.8em;
+    background:linear-gradient(transparent,rgba(3,11,24,.95));
+    pointer-events:none;
+  }
+  .bio-toggle{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--yl);background:none;border:none;padding:0 0 14px 0;
+    cursor:pointer;font-weight:700;font-family:'Nasalization','Inter',sans-serif;
+  }
+  /* tags — horizontal scroll */
+  .t-tags{
+    display:flex!important;flex-wrap:nowrap!important;
+    overflow-x:auto;gap:6px!important;
+    padding-bottom:4px;scrollbar-width:none;
+  }
+  .t-tags::-webkit-scrollbar{display:none}
+  .ttag{
+    white-space:nowrap!important;font-size:.5rem!important;
+    padding:4px 10px!important;flex-shrink:0;
+    border-color:rgba(248,204,49,.2)!important;
+  }
   #contact{grid-template-columns:1fr}
   .cl{padding:60px 24px}
   .cr{padding:60px 24px}
@@ -497,14 +586,20 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
     grid-template-columns:unset
   }
   /* animated vertical line */
-  .proc-grid::before{
+  .proc-grid::before{display:none!important}
+  /* line BETWEEN circles — starts below dot top, not through it */
+  .proc-step::after{
     content:'';position:absolute;
-    left:26px;top:28px;bottom:28px;width:2px;
-    background:linear-gradient(to bottom,var(--y) 0%,rgba(248,204,49,.15) 100%);
+    left:26px;top:54px;bottom:0;width:2px;
+    background:linear-gradient(to bottom,var(--y) 0%,rgba(248,204,49,.08) 100%);
     transform:scaleY(0);transform-origin:top;
-    animation:tlDraw 1.5s cubic-bezier(.22,1,.36,1) .4s forwards;
-    z-index:1
+    animation:tlDraw .5s cubic-bezier(.22,1,.36,1) forwards;
+    z-index:0
   }
+  .proc-step:last-child::after{display:none!important}
+  .proc-step:nth-child(1)::after{animation-delay:.68s}
+  .proc-step:nth-child(2)::after{animation-delay:.96s}
+  .proc-step:nth-child(3)::after{animation-delay:1.24s}
   /* each step */
   .proc-step{
     display:grid;
@@ -1295,6 +1390,18 @@ function closeSheet(){
 /* ── Mobile: tap cards to open sheet, tap process steps to reveal ── */
 document.addEventListener('DOMContentLoaded',()=>{
   if('ontouchstart' in window || navigator.maxTouchPoints>0){
+    /* Bio read-more toggle */
+    const bio=document.querySelector('.t-bio');
+    if(bio){
+      const btn=document.createElement('button');
+      btn.className='bio-toggle';
+      btn.innerHTML='Read more <span style="font-size:.7rem">▾</span>';
+      bio.after(btn);
+      btn.addEventListener('click',()=>{
+        const open=bio.classList.toggle('bio-open');
+        btn.innerHTML=open?'Show less <span style="font-size:.7rem">▴</span>':'Read more <span style="font-size:.7rem">▾</span>';
+      });
+    }
     document.querySelectorAll('.svc-card').forEach(c=>{
       c.addEventListener('click',()=>{
         const name=c.querySelector('.svc-name')?.textContent||'';
