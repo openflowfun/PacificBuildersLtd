@@ -255,21 +255,73 @@ body.hov #cur-r{opacity:.2}
 ════════════════════ */
 #process{background:var(--dk1);padding:100px 36px}
 #process .in{max-width:1200px;margin:0 auto}
-.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border:1px solid var(--b)}
-.proc-step{padding:36px 28px;position:relative;border-right:1px solid var(--b)}
-.proc-step:last-child{border-right:none}
-
-.proc-dot{width:44px;height:44px;border-radius:50%;background:var(--dk2);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:'Nasalization','Inter',sans-serif;font-size:.78rem;color:var(--yl);margin-bottom:16px;position:relative}
-.proc-dot::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--b);animation:ppulse 3s ease-in-out infinite}
-.proc-step:nth-child(2) .proc-dot::after{animation-delay:.75s}
-.proc-step:nth-child(3) .proc-dot::after{animation-delay:1.5s}
-.proc-step:nth-child(4) .proc-dot::after{animation-delay:2.25s}
+/* ── Desktop vertical timeline (centred) ── */
+.proc-grid{
+  display:flex;flex-direction:column;
+  max-width:680px;margin:56px auto 0;
+  border:1px solid var(--b);padding:52px 60px;
+  position:relative;gap:0;
+  background:rgba(11,41,79,.08);
+}
+/* vertical connector line – desktop */
+.proc-grid::before{
+  content:'';position:absolute;
+  left:90px;top:78px;bottom:78px;width:2px;
+  background:linear-gradient(to bottom,var(--y) 0%,rgba(248,204,49,.12) 100%);
+  transform:scaleY(0);transform-origin:top;
+  animation:tlDraw 1.6s cubic-bezier(.22,1,.36,1) .3s forwards;
+}
+.proc-step{
+  display:grid;
+  grid-template-columns:62px 1fr;
+  grid-template-rows:auto auto;
+  grid-template-areas:'dot title' 'dot desc';
+  column-gap:24px;row-gap:6px;
+  padding:0 0 44px 0;
+  border:none;background:none;position:relative;
+  opacity:0;transform:translateX(22px);
+  animation:tlStep .55s cubic-bezier(.22,1,.36,1) forwards;
+}
+.proc-step:last-child{padding-bottom:0}
+.proc-step:nth-child(1){animation-delay:.4s}
+.proc-step:nth-child(2){animation-delay:.65s}
+.proc-step:nth-child(3){animation-delay:.9s}
+.proc-step:nth-child(4){animation-delay:1.15s}
+.proc-step::before{display:none!important}
+/* line segment from below dot to next dot */
+.proc-step::after{
+  content:'';position:absolute;
+  left:30px;top:62px;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--y),rgba(248,204,49,.08));
+  transform:scaleY(0);transform-origin:top;
+  animation:tlDraw .5s cubic-bezier(.22,1,.36,1) forwards;
+  z-index:0;
+}
+.proc-step:last-child::after{display:none!important}
+.proc-step:nth-child(1)::after{animation-delay:.62s}
+.proc-step:nth-child(2)::after{animation-delay:.87s}
+.proc-step:nth-child(3)::after{animation-delay:1.12s}
+.proc-dot{
+  grid-area:dot;
+  width:62px;height:62px;
+  border-radius:50%;background:var(--dk2);
+  border:2px solid var(--y);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Nasalization','Inter',sans-serif;font-size:.82rem;
+  color:var(--yl);margin-bottom:0;position:relative;z-index:2;
+  box-shadow:0 0 18px rgba(248,204,49,.22),inset 0 0 12px rgba(248,204,49,.07);
+  animation:dotGlow 3s ease-in-out infinite;align-self:start;
+}
+.proc-dot::after{display:none}
+.proc-step:nth-child(2) .proc-dot{animation-delay:.75s}
+.proc-step:nth-child(3) .proc-dot{animation-delay:1.5s}
+.proc-step:nth-child(4) .proc-dot{animation-delay:2.25s}
 @keyframes ppulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.3);opacity:0}}
 @keyframes tlDraw{0%{transform:scaleY(0);opacity:0}30%{opacity:1}100%{transform:scaleY(1)}}
 @keyframes tlStep{0%{opacity:0;transform:translateX(28px)}100%{opacity:1;transform:none}}
 @keyframes dotGlow{0%,100%{box-shadow:0 0 12px rgba(248,204,49,.2),inset 0 0 10px rgba(248,204,49,.06)}50%{box-shadow:0 0 24px rgba(248,204,49,.48),inset 0 0 16px rgba(248,204,49,.16)}}
-.proc-h{font-family:'Nasalization','Inter',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t);margin-bottom:10px}
-.proc-d{font-size:.78rem;color:var(--t3);line-height:1.65}
+.proc-h{grid-area:title;font-family:'Nasalization','Inter',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--yl);margin-bottom:0;padding-top:6px;line-height:1.3}
+.proc-d{grid-area:desc;font-size:.8rem;color:var(--t3);line-height:1.7;margin:0}
 /* Yellow top accent on hover */
 .proc-step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--y);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
 .proc-step:hover::before{transform:scaleX(1)}
@@ -278,24 +330,86 @@ body.hov #cur-r{opacity:.2}
    TEAM
 ════════════════════ */
 #team{background:var(--dk);padding:100px 36px}
-#team .in{max-width:1200px;margin:0 auto}
-.team-card{display:grid;grid-template-columns:380px 1fr;margin-top:48px;border:1px solid var(--b)}
-.t-accent{grid-column:1/-1;height:2px;background:linear-gradient(90deg,transparent,var(--y),transparent)}
-.t-photo{background:var(--dk2);display:flex;align-items:stretch;min-height:380px}
-.t-photo img{width:100%;height:100%;object-fit:cover}
-.t-info{padding:44px 52px;background:rgba(11,41,79,.2)}
-.t-name{font-family:'Nasalization','Inter',sans-serif;font-size:clamp(1.6rem,2.5vw,2.2rem);letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
-.t-role{color:var(--yl);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:20px}
-.t-creds{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-.t-cred{border:1px solid var(--b);padding:5px 12px;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
-.t-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);margin-bottom:22px}
-.ts{padding:14px;text-align:center;background:var(--dk)}
-.ts .n{font-family:'Nasalization','Inter',sans-serif;font-size:1.35rem;color:var(--yl)}
-.ts .l{font-size:.53rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-top:3px}
-.t-bio{font-size:.86rem;color:var(--t2);line-height:1.82;margin-bottom:20px}
+#team .in{max-width:860px;margin:0 auto}
+/* ── Director card — desktop ── */
+.team-card{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  grid-template-rows:auto 1fr;
+  grid-template-areas:'accent accent' 'photo info';
+  margin-top:40px;
+  border:1px solid rgba(248,204,49,.18);
+  border-radius:10px;overflow:hidden;
+  background:linear-gradient(140deg,rgba(11,41,79,.65) 0%,rgba(3,11,24,.92) 100%);
+}
+.t-accent{
+  grid-area:accent;height:2px;
+  background:linear-gradient(90deg,transparent,var(--y) 30%,var(--yl) 50%,var(--y) 70%,transparent);
+  animation:shimmer 3s ease-in-out infinite;
+}
+/* logo column */
+.t-photo{
+  grid-area:photo;
+  background:none!important;
+  display:flex!important;align-items:flex-start;justify-content:center;
+  padding:44px 32px 44px 44px!important;min-height:unset;
+}
+.t-photo img{
+  width:120px!important;max-width:120px!important;
+  height:120px!important;
+  border-radius:50%;
+  border:2px solid var(--y);
+  box-shadow:0 0 28px rgba(248,204,49,.35),0 0 8px rgba(248,204,49,.15);
+  object-fit:contain;padding:14px;background:#fff;
+  flex-shrink:0;
+  animation:dotGlow 3s ease-in-out infinite;
+}
+/* info column */
+.t-info{grid-area:info;padding:44px 48px 44px 20px!important;background:none!important}
+.t-name{font-family:'Nasalization','Inter',sans-serif;font-size:clamp(1.2rem,2vw,1.7rem);letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.t-role{color:var(--yl);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:20px}
+/* hide the 3 badge boxes */
+.t-creds{display:none!important}
+/* stats row */
+.t-stats{
+  display:flex;gap:10px;background:transparent!important;
+  margin-bottom:20px;border:none;
+}
+.ts{
+  flex:1;padding:12px 10px!important;text-align:center;
+  background:rgba(11,41,79,.55)!important;
+  border:1px solid rgba(248,204,49,.15);border-radius:6px;
+}
+.ts .n{font-family:'Nasalization','Inter',sans-serif;font-size:1.2rem;color:var(--y)}
+.ts .l{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-top:3px}
+/* bio with read-more */
+.t-bio{
+  font-size:.82rem;color:var(--t2);line-height:1.82;
+  max-height:3.8em;overflow:hidden;position:relative;
+  margin-bottom:8px!important;
+  transition:max-height .45s cubic-bezier(.22,1,.36,1);
+}
+.t-bio.bio-open{max-height:300px}
+.t-bio:not(.bio-open)::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1.8em;
+  background:linear-gradient(transparent,rgba(3,11,24,.9));
+  pointer-events:none;
+}
+.bio-toggle{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--yl);background:none;border:none;padding:0 0 16px 0;
+  cursor:pointer;font-weight:700;font-family:'Nasalization','Inter',sans-serif;
+}
+/* tags */
 .t-tags{display:flex;flex-wrap:wrap;gap:7px}
-.ttag{border:1px solid var(--b);padding:5px 12px;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);transition:border-color .2s,color .2s;cursor:default}
-.ttag:hover{border-color:var(--b2);color:var(--yl)}
+.ttag{
+  border:1px solid rgba(248,204,49,.18);padding:5px 12px;
+  font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--t3);transition:border-color .25s,color .25s;cursor:default;
+  border-radius:2px;
+}
+.ttag:hover{border-color:var(--y);color:var(--yl)}
 
 /* ════════════════════
    FAQ
@@ -1136,12 +1250,12 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
       <h2>Frequently Asked <em>Questions</em></h2>
     </div>
     <div class="faq-list rv d2">
-      <div class="fi"><button class="fq" onclick="toggleFAQ(this)">Do you offer free quotes?<span class="fic">+</span></button><div class="fb"><p>Yes – every consultation and quote is completely free with no obligation. We'll meet on-site, discuss your project, and provide a fully itemised quote so you can make an informed decision.</p></div></div>
+      <div class="fi"><button class="fq" onclick="toggleFAQ(this)">How do I get started with Pacific Builders?<span class="fic">+</span></button><div class="fb"><p>It's simple – call or message Jason directly for a free, no-obligation consultation. We'll meet on-site, listen to your vision, and put together a fully itemised quote. No pressure, no hidden fees, just an honest conversation about your project.</p></div></div>
       <div class="fi"><button class="fq" onclick="toggleFAQ(this)">What areas of Canterbury do you service?<span class="fic">+</span></button><div class="fb"><p>We work across greater Canterbury including Christchurch, Selwyn, Waimakariri, and surrounding areas. Give Jason a call if you're unsure – we'll sort it out.</p></div></div>
       <div class="fi"><button class="fq" onclick="toggleFAQ(this)">How long does a new build typically take?<span class="fic">+</span></button><div class="fb"><p>Build timelines depend on size and complexity. A standard new build typically takes 6–12 months from breaking ground. We'll give you a realistic timeline upfront and keep you updated throughout.</p></div></div>
       <div class="fi"><button class="fq" onclick="toggleFAQ(this)">Are you a Licensed Building Practitioner?<span class="fic">+</span></button><div class="fb"><p>Yes. Jason is an LBP under the NZ Building Act. All restricted building work is legally carried out by a licensed professional, and you're fully protected under the Act.</p></div></div>
       <div class="fi"><button class="fq" onclick="toggleFAQ(this)">Do you manage council consents?<span class="fic">+</span></button><div class="fb"><p>Absolutely. We handle all council consent applications and liaise with local councils on your behalf. It's all part of the service – you don't need to worry about the paperwork.</p></div></div>
-      <div class="fi"><button class="fq" onclick="toggleFAQ(this)">What warranty do you provide?<span class="fic">+</span></button><div class="fb"><p>All work is completed to NZ Building Code standards and backed by our workmanship guarantee, plus statutory warranties under the Building Act for additional peace of mind.</p></div></div>
+      <div class="fi"><button class="fq" onclick="toggleFAQ(this)">Can I make changes to the design once construction has started?<span class="fic">+</span></button><div class="fb"><p>Minor changes can often be accommodated, but we recommend finalising all design decisions before breaking ground to avoid delays and cost variations. Jason will walk you through the process upfront so there are no surprises down the line.</p></div></div>
     </div>
   </div>
 </section>
@@ -1389,19 +1503,20 @@ function closeSheet(){
 
 /* ── Mobile: tap cards to open sheet, tap process steps to reveal ── */
 document.addEventListener('DOMContentLoaded',()=>{
+  /* Bio read-more toggle — all devices */
+  const bio=document.querySelector('.t-bio');
+  if(bio){
+    const btn=document.createElement('button');
+    btn.className='bio-toggle';
+    btn.innerHTML='Read more <span style="font-size:.7rem">▾</span>';
+    bio.after(btn);
+    btn.addEventListener('click',()=>{
+      const open=bio.classList.toggle('bio-open');
+      btn.innerHTML=open?'Show less <span style="font-size:.7rem">▴</span>':'Read more <span style="font-size:.7rem">▾</span>';
+    });
+  }
+
   if('ontouchstart' in window || navigator.maxTouchPoints>0){
-    /* Bio read-more toggle */
-    const bio=document.querySelector('.t-bio');
-    if(bio){
-      const btn=document.createElement('button');
-      btn.className='bio-toggle';
-      btn.innerHTML='Read more <span style="font-size:.7rem">▾</span>';
-      bio.after(btn);
-      btn.addEventListener('click',()=>{
-        const open=bio.classList.toggle('bio-open');
-        btn.innerHTML=open?'Show less <span style="font-size:.7rem">▴</span>':'Read more <span style="font-size:.7rem">▾</span>';
-      });
-    }
     document.querySelectorAll('.svc-card').forEach(c=>{
       c.addEventListener('click',()=>{
         const name=c.querySelector('.svc-name')?.textContent||'';
