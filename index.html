@@ -165,6 +165,7 @@ body.hov #cur-r{opacity:.2}
 .tc::before{content:'';flex:0 0 5px;height:5px;border-radius:50%;background:var(--y)}
 /* NZBN strip under about section */
 .nzbn-strip{background:var(--dk2);border-top:1px solid var(--b);padding:14px 36px;display:flex;align-items:center;gap:12px}
+.nzbn-group{display:inline-flex;align-items:center;gap:4px}
 .nzbn-strip .lbl{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);font-weight:700}
 .nzbn-strip .val{font-family:'Nasalization','Inter',sans-serif;font-size:.75rem;color:var(--yl)}
 
@@ -406,11 +407,13 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .h-btns .btn-g{display:block;width:100%;text-align:center;margin-top:10px;padding:11px 24px;border:1px solid rgba(255,255,255,.4);color:#fff}
   .mob-call{display:none!important}
   /* NZBN strip mobile */
-  .nzbn-strip{padding:12px 24px;gap:0;flex-wrap:nowrap;justify-content:space-between}
-  .nzbn-strip .lbl{font-size:.45rem;letter-spacing:.12em}
+  .nzbn-strip{padding:12px 24px;gap:0;flex-wrap:nowrap;justify-content:space-between;align-items:center}
+  .nzbn-group{display:inline-flex;align-items:center;gap:4px}
+.nzbn-strip .lbl{font-size:.45rem;letter-spacing:.12em}
   .nzbn-strip .val{font-size:.62rem}
   .nzbn-loc{display:none!important}
   .nzbn-strip span[style*="flex:1"]{display:none}
+  .nzbn-group{display:inline-flex}
   /* stat-banner mobile */
   /* section headings one line */
   h2{font-size:clamp(1.2rem,6vw,1.8rem)!important;letter-spacing:.02em!important}
@@ -599,14 +602,9 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
     </div>
   </div>
   <div class="nzbn-strip rv">
-    <span class="lbl">NZBN</span>
-    <span class="val">9429036846238</span>
-    <span style="flex:1"></span>
-    <span class="lbl">Est.</span>
-    <span class="val">2001</span>
-    <span class="nzbn-loc" style="flex:1"></span>
-    <span class="nzbn-loc lbl">Location</span>
-    <span class="nzbn-loc val">Canterbury, New Zealand</span>
+    <span class="nzbn-group"><span class="lbl">NZBN</span>&nbsp;<span class="val">9429036846238</span></span>
+    <span class="nzbn-group"><span class="lbl">Est.</span>&nbsp;<span class="val">2001</span></span>
+    <span class="nzbn-loc nzbn-group"><span class="lbl">Location</span>&nbsp;<span class="val">Canterbury, New Zealand</span></span>
   </div>
 </section>
 
@@ -1073,6 +1071,15 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 
 <!-- ══════ BACK TO TOP ══════ -->
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<!-- Mobile Services Bottom Sheet -->
+<div id="svc-backdrop" onclick="closeSheet()" style="display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.5)"></div>
+<div id="svc-sheet" style="position:fixed;bottom:-100%;left:0;right:0;z-index:701;background:#0b294f;border-top:2px solid var(--y);border-radius:18px 18px 0 0;padding:28px 24px 40px;transition:bottom .35s cubic-bezier(.22,1,.36,1);max-height:70vh;overflow-y:auto">
+  <div style="width:40px;height:3px;background:rgba(255,255,255,.25);border-radius:2px;margin:0 auto 20px"></div>
+  <div id="sheet-name" style="font-family:'Nasalization','Inter',sans-serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--yl);margin-bottom:14px"></div>
+  <div id="sheet-desc" style="color:rgba(237,232,220,.8);font-size:.82rem;line-height:1.7;margin-bottom:16px"></div>
+  <div id="sheet-feats" style="display:flex;flex-direction:column;gap:8px"></div>
+</div>
 
 <script>
 /* ── Progress ── */
