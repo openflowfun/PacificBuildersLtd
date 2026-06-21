@@ -78,7 +78,8 @@ body.hov #cur-r{opacity:.2}
 /* ════════════════════
    NAVBAR
 ════════════════════ */
-#nav{position:fixed;top:0;left:0;right:0;z-index:600;height:108px;overflow:hidden;display:flex;align-items:center;background:#fff;border-bottom:1px solid rgba(11,41,79,.12);transition:height .4s,background .4s,box-shadow .4s}
+#nav{position:fixed;top:0;left:0;right:0;z-index:600;height:108px;overflow:hidden;display:flex;align-items:center;background:#fff;border-bottom:1px solid rgba(11,41,79,.12);transition:height .4s,background .4s,box-shadow .4s,transform .35s cubic-bezier(.22,1,.36,1)}
+#nav.hide{transform:translateY(-100%)}
 #nav.sc{height:72px;background:#fff;box-shadow:0 2px 16px rgba(11,41,79,.1);border-bottom:1px solid rgba(11,41,79,.18)}
 .nav-in{width:100%;max-width:1320px;margin:0 auto;padding:0 36px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .nav-logo img{height:96px;width:auto;object-fit:contain;transition:height .4s}
@@ -556,52 +557,56 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .p-desc{font-size:.62rem;line-height:1.5}
   /* ══ FOOTER MOBILE — Quick Links | Services → Logo → Copyright ══ */
   footer{padding:40px 20px 28px}
-  /* fg-grid becomes flex column so we can reorder children */
   .fg-grid{
-    display:flex;flex-direction:column;
-    grid-template-columns:unset;gap:0;
-    padding-bottom:0;border-bottom:none;
+    display:flex!important;flex-direction:column!important;
+    grid-template-columns:unset!important;gap:0!important;
+    padding-bottom:0!important;border-bottom:none!important;
+    max-width:100%!important;
   }
-  /* .ft-right (links) moves to TOP via order:1 */
+  /* links section first */
   .ft-right{
-    order:1;
-    flex-direction:row!important;gap:0!important;
-    justify-content:space-between;
-    padding-bottom:28px;
-    border-bottom:1px solid var(--b);
-    margin-bottom:0;
-  }
-  .ft-links{flex:1;padding:0 8px;text-align:center!important}
-  .ft-links:first-child{padding-left:0}
-  .ft-links:last-child{padding-right:0}
-  .ft-links h4{font-size:.5rem;letter-spacing:.14em;margin-bottom:12px;text-align:center!important}
-  .ft-links a{font-size:.7rem;margin-bottom:9px;display:block!important;text-align:center!important}
-  /* first div (logo+tagline+sub) moves to BELOW the links via order:2 */
-  .fg-grid > div:first-child{
-    order:2;
-    display:flex!important;
-    flex-direction:column;align-items:center;
-    padding-top:28px;padding-bottom:0;
-  }
-  /* hide tagline + sub on mobile — logo only */
-  .ft-tag,.ft-sub{display:none}
-  /* logo centred */
-  .ft-logo{
-    display:flex!important;
+    order:1!important;
+    display:flex!important;flex-direction:row!important;gap:0!important;
     justify-content:center!important;
-    align-items:center!important;
-    margin:0 auto!important;
+    padding-bottom:28px!important;
+    border-bottom:1px solid var(--b)!important;
+  }
+  .ft-links{
+    flex:1!important;padding:0 12px!important;
+    display:flex!important;flex-direction:column!important;
+    align-items:center!important;text-align:center!important;
+  }
+  .ft-links h4{
+    font-size:.5rem!important;letter-spacing:.14em!important;
+    margin-bottom:14px!important;text-align:center!important;
     width:100%!important;
   }
-  /* override inline style on ft-logo div */
-  .fg-grid > div:first-child .ft-logo{justify-content:center!important}
-  .ft-logo img{height:90px!important}
-  /* ft-bar centred */
-  .ft-bar{
-    flex-direction:column!important;align-items:center!important;
-    text-align:center;margin-top:20px;padding-right:0!important;gap:6px!important;
+  .ft-links a{
+    font-size:.7rem!important;margin-bottom:10px!important;
+    display:block!important;text-align:center!important;width:100%!important;
   }
-  .ft-copy,.ft-cred{text-align:center}
+  /* logo section second */
+  .fg-grid > div:first-child{
+    order:2!important;
+    display:flex!important;flex-direction:column!important;
+    align-items:center!important;justify-content:center!important;
+    padding-top:28px!important;padding-bottom:0!important;width:100%!important;
+  }
+  .ft-tag,.ft-sub{display:none!important}
+  .ft-logo{
+    display:flex!important;
+    justify-content:center!important;align-items:center!important;
+    width:100%!important;margin:0!important;
+  }
+  .ft-logo img{height:90px!important;margin:0 auto!important}
+  /* bottom bar centred */
+  .ft-bar{
+    display:flex!important;flex-direction:column!important;
+    align-items:center!important;text-align:center!important;
+    margin-top:20px!important;padding-right:0!important;gap:6px!important;
+  }
+  .ft-copy{text-align:center!important;width:100%!important}
+  .ft-cred{text-align:center!important;width:100%!important}
   /* section headings */
   section .in{padding:0 20px}
   .about-img{display:none}
@@ -1333,7 +1338,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 <footer>
   <div class="fg-grid">
     <div>
-      <div class="ft-logo" style="justify-content:flex-start;margin-bottom:18px"><img src="Logo.jpg" alt="Pacific Builders Canterbury Ltd"></div>
+      <div class="ft-logo"><img src="Logo.jpg" alt="Pacific Builders Canterbury Ltd"></div>
       <div class="ft-tag">Building Canterbury's <em>Future</em> – One Home at a Time</div>
       <p class="ft-sub">Premium residential construction across Canterbury, New Zealand.<br>Quality craftsmanship, honest pricing, and results that last a lifetime.</p>
     </div>
@@ -1571,6 +1576,25 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   }
 });
+
+/* ── Hide nav on scroll down, show on scroll up ── */
+(function(){
+  let lastY=window.scrollY,ticking=false;
+  const nav=document.getElementById('nav');
+  function update(){
+    const y=window.scrollY;
+    if(y>lastY && y>80){
+      nav.classList.add('hide');
+    } else {
+      nav.classList.remove('hide');
+    }
+    lastY=y;
+    ticking=false;
+  }
+  window.addEventListener('scroll',()=>{
+    if(!ticking){requestAnimationFrame(update);ticking=true;}
+  },{passive:true});
+})();
 </script>
 </body>
 </html>
