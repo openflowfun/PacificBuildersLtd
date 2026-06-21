@@ -17,6 +17,8 @@
 <!-- Preload critical assets for instant load -->
 <link rel="preload" href="Logo.jpg" as="image" fetchpriority="high">
 <link rel="preload" href="home1.JPG" as="image" fetchpriority="high">
+<link rel="preload" href="home2.JPG" as="image" fetchpriority="low">
+<link rel="preload" href="home3.JPG" as="image" fetchpriority="low">
 <link rel="preload" href="NZ_Logo.png" as="image">
 <link rel="preload" href="mainhouse.MP4" as="video" type="video/mp4">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -112,15 +114,22 @@ body.hov #cur-r{opacity:.2}
 /* LEFT panel – navy with diagonal right edge */
 .h-left{position:relative;z-index:3;width:50%;flex-shrink:0;background:#0b294f;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:120px 52px 80px 48px;text-align:center;clip-path:polygon(0 0,calc(100% - 72px) 0,100% 100%,0 100%)}
 /* RIGHT panel – Ken Burns photos (bleeds behind diagonal) */
-.kb-wrap{position:absolute;left:38%;right:0;top:0;bottom:0;z-index:1;overflow:hidden}
+.kb-wrap{position:absolute;left:38%;right:0;top:0;bottom:0;z-index:1;overflow:hidden;background:url('home1.JPG') center/cover no-repeat}
 .mob-vid{display:none}
 .kb-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:kbCycle 18s ease-in-out infinite}
-.kb-slide:nth-child(1){background-image:url('home1.JPG');animation-delay:0s;opacity:1}
+.kb-slide:nth-child(1){background-image:url('home1.JPG');animation-name:kbFirst;animation-delay:0s;opacity:1}
 .kb-slide:nth-child(2){background-image:url('home2.JPG');animation-delay:6s}
 .kb-slide:nth-child(3){background-image:url('home3.JPG');animation-delay:12s}
 @keyframes kbCycle{
   0%{opacity:0;transform:scale(1)}
   8%{opacity:1}
+  50%{opacity:1}
+  58%{opacity:0}
+  100%{opacity:0;transform:scale(1.06)}
+}
+/* First slide: opens at opacity:1 immediately — no black flash */
+@keyframes kbFirst{
+  0%{opacity:1;transform:scale(1)}
   50%{opacity:1}
   58%{opacity:0}
   100%{opacity:0;transform:scale(1.06)}
@@ -460,15 +469,16 @@ body.hov #cur-r{opacity:.2}
    FOOTER
 ════════════════════ */
 footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px}
-.fg-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;padding-bottom:44px;border-bottom:1px solid var(--b);align-items:start}
+.fg-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;padding-bottom:44px;border-bottom:1px solid var(--b);align-items:stretch}
 .ft-right{display:flex;gap:60px;justify-content:center}
-.ft-tag{font-family:'Nasalization','Inter',sans-serif;font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase;line-height:1.35;margin-bottom:12px}
+.ft-tag{font-family:'Nasalization','Inter',sans-serif;font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase;line-height:1.35;margin-bottom:12px;margin-top:auto}
 .ft-tag em{color:var(--yl);font-style:normal}
 .ft-sub{font-size:.78rem;color:var(--t3);line-height:1.7;max-width:600px;margin-bottom:18px}
+.fg-grid > div:first-child{display:flex;flex-direction:column}
 .ft-contacts a{display:block;font-size:.78rem;color:var(--t3);text-decoration:none;margin-bottom:6px;transition:color .2s}
 .ft-contacts a:hover{color:var(--yl)}
 .ft-logo{display:flex;align-items:center;justify-content:center}
-.ft-logo img{height:110px;width:auto;object-fit:contain}
+.ft-logo img{height:110px;width:auto;object-fit:contain;margin-bottom:0}
 .ft-links h4{font-family:'Nasalization','Inter',sans-serif;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yl);margin-bottom:14px}
 .ft-links a{display:block;font-size:.76rem;color:var(--t3);text-decoration:none;margin-bottom:9px;transition:color .2s}
 .ft-links a:hover{color:var(--t)}
@@ -716,7 +726,11 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
     border-color:rgba(248,204,49,.2)!important;
   }
   #contact{grid-template-columns:1fr}
-  .cl{padding:60px 24px}
+  .cl{padding:60px 24px;text-align:center}
+  .cr{padding:60px 24px;text-align:center}
+  #contact .ey{text-align:center}
+  #contact h2{text-align:center}
+  #contact .rv{text-align:center}
   .cr{padding:60px 24px}
 
   .stat-banner{grid-template-columns:repeat(3,1fr);gap:1px}
@@ -727,12 +741,39 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .sl-cat{font-size:.48rem}
   /* Our Work images bigger */
   .sl-wrap{aspect-ratio:unset;height:70vw;min-height:260px}
-  .svc-grid{grid-template-columns:repeat(3,1fr);gap:10px}
-  .svc-card{height:auto;min-height:100px}
-  .svc-inner-flip{min-height:100px;height:100px}
-  .svc-front,.svc-back{position:absolute;inset:0;padding:10px 8px}
-  .svc-name{font-size:.5rem;letter-spacing:.01em;white-space:normal;text-align:center;line-height:1.2}
-  .svc-icon{display:none}
+  /* ══ SERVICES MOBILE — creative cards ══ */
+  .svc-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .svc-card{height:auto;min-height:90px;border-radius:6px;overflow:hidden}
+  .svc-inner-flip{min-height:90px;height:90px;border-radius:6px}
+  .svc-front{
+    position:absolute;inset:0;padding:10px 6px;
+    background:linear-gradient(145deg,rgba(11,41,79,.9) 0%,rgba(3,11,24,.95) 100%)!important;
+    border:1px solid rgba(248,204,49,.18)!important;
+    border-radius:6px;
+    display:flex!important;flex-direction:column!important;
+    align-items:center!important;justify-content:center!important;
+    gap:6px!important;position:relative;overflow:hidden;
+  }
+  /* gold top accent bar per card */
+  .svc-front::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--y),transparent);
+    opacity:.7;
+  }
+  /* subtle gold corner glow */
+  .svc-front::after{
+    content:'';position:absolute;bottom:-12px;right:-12px;
+    width:36px;height:36px;border-radius:50%;
+    background:radial-gradient(circle,rgba(248,204,49,.18),transparent 70%);
+  }
+  .svc-icon{display:block!important;font-size:1.1rem;line-height:1;z-index:1}
+  .svc-name{
+    font-size:.45rem!important;letter-spacing:.04em!important;
+    white-space:normal!important;text-align:center!important;
+    line-height:1.2!important;color:rgba(237,232,220,.9)!important;z-index:1;
+  }
+  .svc-back{position:absolute;inset:0;padding:10px 8px}
+  .svc-bar{display:none}
   .svc-desc{font-size:.58rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .svc-feats{display:none}
   .svc-bar{display:none}
