@@ -150,6 +150,7 @@ body.hov #cur-r{opacity:.2}
 #about{background:var(--dk1);overflow:hidden}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;min-height:620px}
 .about-img{position:relative;overflow:hidden}
+.mob-about-vid{display:none}
 .about-img img,.about-img video{width:100%;height:100%;object-fit:cover;display:block}
 /* Yellow diagonal overlay slice */
 .about-img::after{content:'';position:absolute;top:0;right:-1px;bottom:0;width:80px;background:var(--dk1);clip-path:polygon(100% 0,100% 100%,0 100%)}
@@ -402,6 +403,10 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .h-btns .btn-y{width:100%;text-align:center;display:block;margin-bottom:0}
   .h-btns .btn-g{display:none}
   .mob-call{display:none!important}
+  .about-img{display:none}
+  .mob-about-vid{display:block;width:100%;height:220px;object-fit:cover;border-radius:4px;margin-top:20px}
+  .svc-card.flipped .svc-inner-flip{transform:rotateY(180deg)}
+  .svc-card:hover .svc-inner-flip{transform:none}
   .about-grid{grid-template-columns:1fr}
   .about-img{height:280px}
   .about-img::after{display:none}
@@ -416,12 +421,23 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
   .ft-logo{display:flex;justify-content:flex-start}
   .ft-logo img{height:66px}
   .ft-bar{flex-direction:column;align-items:flex-start}
-  .stat-banner{grid-template-columns:1fr}
-  .pillars{grid-template-columns:1fr}
-  .svc-grid{grid-template-columns:1fr}
+  .stat-banner{grid-template-columns:repeat(3,1fr);gap:1px}
+  .pillars{grid-template-columns:repeat(2,1fr)}
+  .proc-grid{grid-template-columns:repeat(4,1fr);overflow-x:auto;gap:0}
+  .proc-step{min-width:0;padding:20px 12px;border-right:1px solid var(--b);border-bottom:none}
+  .proc-d{display:none}
+  .proc-step.open .proc-d{display:block}
+  .proc-h{cursor:pointer;font-size:.7rem}
+  .proc-dot{width:36px;height:36px;font-size:.65rem;margin-bottom:10px}
+  .svc-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+  .svc-card{height:160px}
+  .svc-front,.svc-back{padding:14px 10px}
+  .svc-name{font-size:.55rem;letter-spacing:.02em}
+  .svc-icon{font-size:1.1rem}
+  .svc-desc{font-size:.65rem;line-height:1.5}
+  .svc-feat{font-size:.58rem}
 }
 @media(max-width:480px){
-  .proc-grid{grid-template-columns:1fr}
   .trust-grid{grid-template-columns:1fr}
 }
 </style>
@@ -478,7 +494,7 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 
     <!-- MIDDLE: main copy -->
     <div class="h-cnt">
-      <div class="h-title"><nobr>From Vision to Foundation –</nobr><br><em>Trust in Every Layer.</em></div>
+      <div class="h-title"><nobr>From Vision to Foundation.</nobr><br><em>Trust in Every Layer.</em></div>
 
       <div class="h-sub">
         <span>Licensed Building Practitioner</span>
@@ -529,6 +545,9 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
         <div class="tc">Fixed-Price Contracts</div>
         <div class="tc">Council Consent Managed</div>
       </div>
+      <video class="mob-about-vid" autoplay muted loop playsinline webkit-playsinline preload="auto">
+        <source src="house.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
   <div class="nzbn-strip rv">
