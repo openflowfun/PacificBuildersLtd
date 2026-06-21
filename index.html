@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<!-- Prevent browser restoring scroll position on refresh — always start at top -->
+<script>if('scrollRestoration' in history){history.scrollRestoration='manual';}window.scrollTo(0,0);</script>
 <title>Pacific Builders Canterbury Ltd – Premium Residential Builder, Canterbury NZ</title>
 <meta name="description" content="Pacific Builders Canterbury Ltd – 25+ years of premium residential construction in Canterbury, NZ. Licensed Building Practitioner. New builds, renovations, architectural homes. Free quotes."/>
 <link rel="icon" href="Logo.jpg"/>
@@ -1450,8 +1452,15 @@ footer{background:var(--dk);border-top:1px solid var(--b);padding:80px 36px 32px
 </div>
 
 <script>
-/* ── Progress ── */
-window.addEventListener('load',()=>{window.scrollTo(0,0);});
+/* ── Always start at top on load/refresh ── */
+window.addEventListener('load',()=>{
+  window.scrollTo(0,0);
+  /* Force all videos to play immediately (handles autoplay policy) */
+  document.querySelectorAll('video').forEach(v=>{
+    v.muted=true;
+    v.play().catch(()=>{});
+  });
+});
 window.addEventListener('scroll',()=>{const p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;document.getElementById('prog').style.width=p+'%';},{passive:true});
 
 /* ── Cursor ── */
@@ -1515,8 +1524,13 @@ function toggleSvc(btn){
 
 /* ── Scroll reveal ── */
 const rvEls=document.querySelectorAll('.rv,.rl,.rr');
-const rvIO=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rvIO.unobserve(e.target);}});},{threshold:.1});
-rvEls.forEach(el=>rvIO.observe(el));
+const rvIO=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rvIO.unobserve(e.target);}});},{threshold:.05,rootMargin:'0px 0px 20px 0px'});
+/* Instantly reveal elements already in viewport on load (no flash-of-invisible on refresh) */
+rvEls.forEach(el=>{
+  const r=el.getBoundingClientRect();
+  if(r.top<window.innerHeight&&r.bottom>0){el.classList.add('vis');}
+  else{rvIO.observe(el);}
+});
 
 /* ── Counters ── */
 document.querySelectorAll('.ctr[data-target]').forEach(el=>{
