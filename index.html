@@ -150,7 +150,7 @@ body.hov #cur-r{opacity:.2}
 /* tag sits at top of panel via h-left space-between */
 .h-tag{display:inline-flex;align-items:center;gap:10px;margin-top:50px}
 .h-tag-img{height:32px;width:auto;object-fit:contain;filter:drop-shadow(0 0 4px rgba(0,0,0,.4))}
-.h-tag-pill{display:inline-flex;align-items:center;border:1px solid rgba(248,204,49,.38);background:rgba(3,11,24,.45);backdrop-filter:blur(8px);color:var(--yl);font-size:.52rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:999px}
+.h-tag-pill{display:inline-flex;align-items:center;border:1px solid rgba(248,204,49,.38);background:rgba(3,11,24,.45);backdrop-filter:blur(8px);color:var(--yl);font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:8px 20px;border-radius:999px}
 /* middle content block */
 .h-cnt{position:relative;z-index:4;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center}
 .h-title{font-family:'Nasalization','Inter',sans-serif;font-size:clamp(1.3rem,2.5vw,2.5rem);font-weight:900;line-height:1.2;letter-spacing:.03em;text-transform:uppercase;margin-bottom:18px;max-width:100%}
@@ -565,7 +565,8 @@ footer{background:#ffffff;border-top:1px solid rgba(3,11,24,.12);padding:80px 36
   .stat-n{font-size:1.6rem}
   .stat-l{font-size:.5rem;letter-spacing:.1em}
   /* trust grid 2 col */
-  .trust-grid{grid-template-columns:1fr 1fr!important;gap:8px}
+  .trust-grid{grid-template-columns:1fr 1fr!important;gap:8px;justify-items:center}
+  .tc{justify-content:center!important}
   .tc{font-size:.52rem;gap:5px;letter-spacing:.02em;font-weight:600}
   /* pillar mobile */
   .pillars{overflow:hidden;width:100%}
@@ -636,6 +637,7 @@ footer{background:#ffffff;border-top:1px solid rgba(3,11,24,.12);padding:80px 36
   *{white-space:normal!important;overflow-wrap:anywhere}
   /* exceptions that need nowrap restored */
   .nav-logo,.btn-y,.btn-g,.h-tag-pill,.of-txt{white-space:nowrap!important}
+  .h-tag-pill{font-size:.75rem!important;padding:7px 18px!important}
   .svc-card .svc-inner-flip{transform:none!important}
   .svc-back{display:none}
   .svc-front{justify-content:center;align-items:center;cursor:pointer}
